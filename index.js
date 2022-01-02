@@ -1,17 +1,15 @@
 const inquirer = require('inquirer');
-// const fs = require('fs');
-// const generatePage = require('./src/page-template');
-
-// const pageHTML = generatePage(name, title, id, email, github);
+const fs = require('fs');
+const generatePage = require('./src/page-template');
 
 const promptManager = () => {
   return inquirer.prompt([
     {
       type: 'input',
-      name: 'name',
-      message: "What is the team manager's name?",
-      validate: (nameInput) => {
-        if (nameInput) {
+      name: 'managerName',
+      message: "What is the team manager's name? (Required)",
+      validate: (managerInput) => {
+        if (managerInput) {
           return true;
         } else {
           console.log("Please enter the manager's name");
@@ -20,9 +18,23 @@ const promptManager = () => {
       },
     },
     {
+      type: 'list',
+      name: 'managerTitle',
+      message: 'What is their title? (Required)',
+      choices: ['manager', 'engineer', 'intern'],
+      validate: (titleInput) => {
+        if (titleInput) {
+          return true;
+        } else {
+          console.log('Please select your title');
+          return false;
+        }
+      },
+    },
+    {
       type: 'input',
-      name: 'id',
-      message: "What is your manager's employee id?",
+      name: 'managerId',
+      message: "What is your manager's employee id? (Required)",
       validate: (idInput) => {
         if (idInput) {
           return true;
@@ -34,8 +46,8 @@ const promptManager = () => {
     },
     {
       type: 'input',
-      name: 'email',
-      message: "What is your manager's email address?",
+      name: 'managerEmail',
+      message: "What is your manager's email address? (Required)",
       validate: (emailInput) => {
         if (emailInput) {
           return true;
@@ -48,7 +60,7 @@ const promptManager = () => {
     {
       type: 'input',
       name: 'officeNumber',
-      message: "What is your manager's office number?",
+      message: "What is your manager's office number? (Required)",
       validate: (officeInput) => {
         if (officeInput) {
           return true;
@@ -62,8 +74,8 @@ const promptManager = () => {
 };
 
 const promptEmployee = (employeeData) => {
-  if (!employeeData.information) {
-    employeeData.information = [];
+  if (!employeeData.employee) {
+    employeeData.employee = [];
   }
 
   console.log(`
@@ -76,8 +88,8 @@ Add a New Employee
     .prompt([
       {
         type: 'input',
-        name: 'name',
-        message: "What is the team employee's name?",
+        name: 'employeeName',
+        message: "What is the team employee's name? (Required)",
         validate: (nameInput) => {
           if (nameInput) {
             return true;
@@ -89,8 +101,8 @@ Add a New Employee
       },
       {
         type: 'list',
-        name: 'title',
-        message: "What is your employee's title?",
+        name: 'employeeTitle',
+        message: "What is your employee's title? (Required)",
         choices: ['engineer', 'intern'],
         validate: (titleInput) => {
           if (titleInput) {
@@ -103,8 +115,8 @@ Add a New Employee
       },
       {
         type: 'input',
-        name: 'id',
-        message: "What is your employee's employee id?",
+        name: 'employeeId',
+        message: "What is your employee's employee id? (Required)",
         validate: (idInput) => {
           if (idInput) {
             return true;
@@ -116,8 +128,8 @@ Add a New Employee
       },
       {
         type: 'input',
-        name: 'email',
-        message: "What is your employee's email address?",
+        name: 'employeeEmail',
+        message: "What is your employee's email address? (Required)",
         validate: (emailInput) => {
           if (emailInput) {
             return true;
@@ -130,7 +142,7 @@ Add a New Employee
       {
         type: 'input',
         name: 'github',
-        message: "What is your employee's GitHub username?",
+        message: "What is your employee's GitHub username? (Required)",
         validate: (githubInput) => {
           if (githubInput) {
             return true;
@@ -148,7 +160,7 @@ Add a New Employee
       },
     ])
     .then((info) => {
-      employeeData.information.push(info);
+      employeeData.employee.push(info);
       if (info.additionalEmployee) {
         return promptEmployee(employeeData);
       } else {
@@ -160,11 +172,11 @@ Add a New Employee
 promptManager()
   .then(promptEmployee)
   .then((employeeData) => {
-    console.log(employeeData);
+    const pageHTML = generatePage(employeeData);
+
+    fs.writeFile('index.html', pageHTML, (err) => {
+      if (err) throw err;
+
+      // console.log('markup complete');
+    });
   });
-
-// fs.writeFile('index.html', pageHTML, (err) => {
-//   if (err) throw err;
-
-//   console.log('markup complete');
-// });
