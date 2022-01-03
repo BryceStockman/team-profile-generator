@@ -35,7 +35,7 @@ ${employeeArr
       <ul class="list-group list-group-flush">
         <li class="list-group-item">ID: ${employeeId}</li>
         <li class="list-group-item">Email: ${employeeEmail}</li>
-        <li class="list-group-item">GitHub: ${github}</li>
+        <li class="list-group-item">GitHub: <a href="https://github.com/${github}" >${github}</a></li>
       </ul>
     </div>
     `;
@@ -47,7 +47,6 @@ ${employeeArr
 
 module.exports = (templateData) => {
   const { employee, ...manager } = templateData;
-  // console.log(templateData);
 
   return `
   <!DOCTYPE html> 
