@@ -1,6 +1,5 @@
 const generateManager = (managerInfo) => {
-  const { managerName, managerTitle, managerId, managerEmail, officeNumber } =
-    managerInfo;
+  const { name, title, id, email, officeNumber } = managerInfo;
 
   if (!managerInfo) {
     return '';
@@ -9,12 +8,12 @@ const generateManager = (managerInfo) => {
   return `
   <div class="card" style="width: 18rem;">
       <div class="card-body">
-        <h5 class="card-title">Name: ${managerName}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">title: ${managerTitle}</h6>
+        <h5 class="card-title">Name: ${name}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">title: ${title}</h6>
       </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">ID: ${managerId}</li>
-        <li class="list-group-item">Email: ${managerEmail}</li>
+        <li class="list-group-item">ID: ${id}</li>
+        <li class="list-group-item">Email: ${email}</li>
         <li class="list-group-item">Office Number: ${officeNumber}</li>
       </ul>        
     </div>
@@ -25,16 +24,16 @@ const generateEmployees = (employeeArr) => {
   return `
 <section>
 ${employeeArr
-  .map(({ employeeName, employeeTitle, employeeId, employeeEmail, github }) => {
+  .map(({ name, title, id, email, github }) => {
     return `
     <div class="card" style="width: 18rem;">
       <div class="card-body">
-        <h5 class="card-title">Name: ${employeeName}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">title: ${employeeTitle}</h6>
+        <h5 class="card-title">Name: ${name}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">title: ${title}</h6>
       </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">ID: ${employeeId}</li>
-        <li class="list-group-item">Email: ${employeeEmail}</li>
+        <li class="list-group-item">ID: ${id}</li>
+        <li class="list-group-item">Email: ${email}</li>
         <li class="list-group-item">GitHub: <a href="https://github.com/${github}" >${github}</a></li>
       </ul>
     </div>
