@@ -1,4 +1,5 @@
 const generateManager = (managerInfo) => {
+  console.log('managerInfo', managerInfo);
   const { name, title, id, email, officeNumber } = managerInfo;
 
   if (!managerInfo) {
@@ -20,32 +21,55 @@ const generateManager = (managerInfo) => {
   `;
 };
 
-const generateEmployees = (employeeArr) => {
+const generateEngineer = (engineerInfo) => {
+  console.log(engineerInfo);
+  const { name, id, email, github } = engineerInfo;
+
+  if (!engineerInfo) {
+    return '';
+  }
+
   return `
-<section>
-${employeeArr
-  .map(({ name, title, id, email, github }) => {
-    return `
-    <div class="card" style="width: 18rem;">
+  <div class="card" style="width: 18rem;">
       <div class="card-body">
         <h5 class="card-title">Name: ${name}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">title: ${title}</h6>
+        <h6 class="card-subtitle mb-2 text-muted">title: ${title}</h6>
       </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">ID: ${id}</li>
         <li class="list-group-item">Email: ${email}</li>
-        <li class="list-group-item">GitHub: <a href="https://github.com/${github}" >${github}</a></li>
-      </ul>
+        <li class="list-group-item">GitHub: ${github}</li>
+      </ul>        
     </div>
-    `;
-  })
-  .join('')}
-  </section>
-`;
+  `;
 };
 
-module.exports = (templateData) => {
-  const { employee, ...manager } = templateData;
+const generateIntern = (internInfo) => {
+  console.log(internInfo);
+  const { name, id, email, school } = internInfo;
+
+  if (!internInfo) {
+    return '';
+  }
+
+  return `
+  <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">Name: ${name}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">title: ${title}</h6>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">ID: ${id}</li>
+        <li class="list-group-item">Email: ${email}</li>
+        <li class="list-group-item">School: ${school}</li>
+      </ul>        
+    </div>
+  `;
+};
+
+module.exports = (employeeData) => {
+  console.log(employeeData);
+  const { Manager, Engineer, Intern } = employeeData;
 
   return `
   <!DOCTYPE html> 
@@ -59,8 +83,9 @@ module.exports = (templateData) => {
   </head>
 
   <body>
-    ${generateManager(manager)}
-    ${generateEmployees(employee)}
+    ${generateManager(Manager)}
+    ${generateEngineer(Engineer)}
+    ${generateIntern(Intern)}
   </body>
   </html>
   `;

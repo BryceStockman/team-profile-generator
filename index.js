@@ -9,7 +9,7 @@ const Intern = require('./lib/Intern');
 const employeeData = [];
 
 const promptManager = () => {
-  return inquirer
+  inquirer
     .prompt([
       {
         type: 'input',
@@ -68,11 +68,12 @@ const promptManager = () => {
       const { name, email, id, officeNumber } = info;
       const manager = new Manager(name, email, id, officeNumber);
       employeeData.push(manager);
+      promptEmployee();
     });
 };
 
 const promptEmployee = () => {
-  return inquirer
+  inquirer
     .prompt([
       {
         type: 'list',
@@ -95,7 +96,7 @@ const promptEmployee = () => {
       } else if (info.employeeTitle === 'intern') {
         createIntern();
       } else {
-        return;
+        createPage();
       }
     });
 };
@@ -228,19 +229,19 @@ function createIntern() {
     });
 }
 
-promptManager()
-  .then(promptEmployee)
-  .then(generatePage(employeeData))
-  .then((pageHTML) => {
-    return writeFile(pageHTML);
-  })
-  .then((writeFileResponse) => {
-    console.log(writeFileResponse);
-    return copyFile();
-  })
-  .then((copyFileResponse) => {
-    console.log(copyFileResponse);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+promptManager();
+
+function createPage() {
+  const pageHTML = generatePage(employeeData);
+  writeFile(pageHTML)
+    .then((writeFileResponse) => {
+      console.log(writeFileResponse);
+      return copyFile();
+    })
+    .then((copyFileResponse) => {
+      console.log(copyFileResponse);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
