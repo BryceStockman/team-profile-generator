@@ -91,6 +91,7 @@ const promptEmployee = () => {
       },
     ])
     .then((info) => {
+      console.log(info);
       if (info.employeeTitle === 'engineer') {
         createEngineer();
       } else if (info.employeeTitle === 'intern') {
@@ -106,7 +107,7 @@ function createEngineer() {
     .prompt([
       {
         type: 'input',
-        name: 'employeeName',
+        name: 'name',
         message: "What is the team employee's name? (Required)",
         validate: (nameInput) => {
           if (nameInput) {
@@ -119,7 +120,7 @@ function createEngineer() {
       },
       {
         type: 'input',
-        name: 'employeeId',
+        name: 'id',
         message: "What is your employee's employee id? (Required)",
         validate: (idInput) => {
           if (idInput) {
@@ -132,7 +133,7 @@ function createEngineer() {
       },
       {
         type: 'input',
-        name: 'employeeEmail',
+        name: 'email',
         message: "What is your employee's email address? (Required)",
         validate: (emailInput) => {
           if (emailInput) {
@@ -170,7 +171,7 @@ function createIntern() {
     .prompt([
       {
         type: 'input',
-        name: 'employeeName',
+        name: 'name',
         message: "What is the team employee's name? (Required)",
         validate: (nameInput) => {
           if (nameInput) {
@@ -183,7 +184,7 @@ function createIntern() {
       },
       {
         type: 'input',
-        name: 'employeeId',
+        name: 'id',
         message: "What is your employee's employee id? (Required)",
         validate: (idInput) => {
           if (idInput) {
@@ -196,7 +197,7 @@ function createIntern() {
       },
       {
         type: 'input',
-        name: 'employeeEmail',
+        name: 'email',
         message: "What is your employee's email address? (Required)",
         validate: (emailInput) => {
           if (emailInput) {

@@ -1,6 +1,6 @@
 const generateManager = (managerInfo) => {
-  console.log('managerInfo', managerInfo);
-  const { name, title, id, email, officeNumber } = managerInfo;
+  const { name, id, email, officeNumber } = managerInfo;
+  console.log('name', name);
 
   if (!managerInfo) {
     return '';
@@ -10,7 +10,7 @@ const generateManager = (managerInfo) => {
   <div class="card" style="width: 18rem;">
       <div class="card-body">
         <h5 class="card-title">Name: ${name}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">title: ${title}</h6>
+        <h6 class="card-subtitle mb-2 text-muted">title: ${name}</h6>
       </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">ID: ${id}</li>
@@ -22,7 +22,7 @@ const generateManager = (managerInfo) => {
 };
 
 const generateEngineer = (engineerInfo) => {
-  console.log(engineerInfo);
+  console.log('engineerInfo', engineerInfo);
   const { name, id, email, github } = engineerInfo;
 
   if (!engineerInfo) {
@@ -33,7 +33,7 @@ const generateEngineer = (engineerInfo) => {
   <div class="card" style="width: 18rem;">
       <div class="card-body">
         <h5 class="card-title">Name: ${name}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">title: ${title}</h6>
+        <h6 class="card-subtitle mb-2 text-muted">title: ${name}</h6>
       </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">ID: ${id}</li>
@@ -45,7 +45,6 @@ const generateEngineer = (engineerInfo) => {
 };
 
 const generateIntern = (internInfo) => {
-  console.log(internInfo);
   const { name, id, email, school } = internInfo;
 
   if (!internInfo) {
@@ -56,7 +55,7 @@ const generateIntern = (internInfo) => {
   <div class="card" style="width: 18rem;">
       <div class="card-body">
         <h5 class="card-title">Name: ${name}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">title: ${title}</h6>
+        <h6 class="card-subtitle mb-2 text-muted">title: ${name}</h6>
       </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">ID: ${id}</li>
@@ -68,8 +67,11 @@ const generateIntern = (internInfo) => {
 };
 
 module.exports = (employeeData) => {
-  console.log(employeeData);
-  const { Manager, Engineer, Intern } = employeeData;
+  // Why does destructuring not work?
+  // const [{ Manager, Engineer, Intern }] = employeeData;
+  const manager = employeeData[0];
+  const engineer = employeeData[1];
+  const intern = employeeData[2];
 
   return `
   <!DOCTYPE html> 
@@ -83,9 +85,9 @@ module.exports = (employeeData) => {
   </head>
 
   <body>
-    ${generateManager(Manager)}
-    ${generateEngineer(Engineer)}
-    ${generateIntern(Intern)}
+    ${generateManager(manager)}
+    ${generateEngineer(engineer)}
+    ${generateIntern(intern)}
   </body>
   </html>
   `;

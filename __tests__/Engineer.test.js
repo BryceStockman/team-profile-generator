@@ -1,11 +1,14 @@
 const Engineer = require('../lib/Engineer');
 
 test('creates an engineer card', () => {
-  const engineer = new Engineer('Dave');
+  const mockEngineer = {
+    name: 'Mike',
+    id: 23,
+    email: 'mike@gmail.com',
+    github: 'mikehub',
+  };
+  const engineer = new Engineer('Mike', 23, 'mike@gmail.com', 'mikehub');
+  console.log(engineer);
 
-  expect(engineer.name).toBe('Dave');
-  expect(engineer.title).toHaveProperty('title');
-  expect(engineer.id).toHaveProperty('id');
-  expect(engineer.email).toHaveProperty('email');
-  expect(engineer.github).toHaveProperty('github');
+  expect(engineer).toEqual(mockEngineer);
 });
