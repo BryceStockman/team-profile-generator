@@ -25,6 +25,20 @@ const promptManager = () => {
         },
       },
       {
+        type: 'list',
+        name: 'title',
+        message: "What is your employee's title? (Required)",
+        choices: ['manager', 'engineer', 'intern'],
+        validate: (titleInput) => {
+          if (titleInput) {
+            return true;
+          } else {
+            console.log("Please enter your employee's title");
+            return false;
+          }
+        },
+      },
+      {
         type: 'input',
         name: 'id',
         message: "What is your manager's employee id? (Required)",
@@ -65,8 +79,8 @@ const promptManager = () => {
       },
     ])
     .then((info) => {
-      const { name, email, id, officeNumber } = info;
-      const manager = new Manager(name, email, id, officeNumber);
+      const { name, title, email, id, officeNumber } = info;
+      const manager = new Manager(name, title, email, id, officeNumber);
       employeeData.push(manager);
       promptEmployee();
     });
@@ -91,7 +105,6 @@ const promptEmployee = () => {
       },
     ])
     .then((info) => {
-      console.log(info);
       if (info.employeeTitle === 'engineer') {
         createEngineer();
       } else if (info.employeeTitle === 'intern') {
@@ -114,6 +127,20 @@ function createEngineer() {
             return true;
           } else {
             console.log("Please enter the employee's name");
+            return false;
+          }
+        },
+      },
+      {
+        type: 'list',
+        name: 'title',
+        message: "What is your employee's title? (Required)",
+        choices: ['engineer', 'intern'],
+        validate: (titleInput) => {
+          if (titleInput) {
+            return true;
+          } else {
+            console.log("Please enter your employee's title");
             return false;
           }
         },
@@ -159,8 +186,8 @@ function createEngineer() {
       },
     ])
     .then((info) => {
-      const { name, email, id, github } = info;
-      const engineer = new Engineer(name, email, id, github);
+      const { name, title, email, id, github } = info;
+      const engineer = new Engineer(name, title, email, id, github);
       employeeData.push(engineer);
       promptEmployee();
     });
@@ -178,6 +205,20 @@ function createIntern() {
             return true;
           } else {
             console.log("Please enter the employee's name");
+            return false;
+          }
+        },
+      },
+      {
+        type: 'list',
+        name: 'title',
+        message: "What is your employee's title? (Required)",
+        choices: ['engineer', 'intern'],
+        validate: (titleInput) => {
+          if (titleInput) {
+            return true;
+          } else {
+            console.log("Please enter your employee's title");
             return false;
           }
         },
@@ -223,8 +264,8 @@ function createIntern() {
       },
     ])
     .then((info) => {
-      const { name, email, id, school } = info;
-      const intern = new Intern(name, email, id, school);
+      const { name, title, email, id, school } = info;
+      const intern = new Intern(name, title, email, id, school);
       employeeData.push(intern);
       promptEmployee();
     });
@@ -233,6 +274,7 @@ function createIntern() {
 promptManager();
 
 function createPage() {
+  console.log('employeeData', employeeData);
   const pageHTML = generatePage(employeeData);
   writeFile(pageHTML)
     .then((writeFileResponse) => {

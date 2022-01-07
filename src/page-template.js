@@ -1,6 +1,5 @@
 const generateManager = (managerInfo) => {
-  const { name, id, email, officeNumber } = managerInfo;
-  console.log('name', name);
+  const { name, title, id, email, officeNumber } = managerInfo;
 
   if (!managerInfo) {
     return '';
@@ -10,7 +9,7 @@ const generateManager = (managerInfo) => {
   <div class="card" style="width: 18rem;">
       <div class="card-body">
         <h5 class="card-title">Name: ${name}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">title: ${name}</h6>
+        <h6 class="card-subtitle mb-2 text-muted">title: ${title}</h6>
       </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">ID: ${id}</li>
@@ -22,8 +21,7 @@ const generateManager = (managerInfo) => {
 };
 
 const generateEngineer = (engineerInfo) => {
-  console.log('engineerInfo', engineerInfo);
-  const { name, id, email, github } = engineerInfo;
+  const { name, title, id, email, github } = engineerInfo;
 
   if (!engineerInfo) {
     return '';
@@ -33,19 +31,19 @@ const generateEngineer = (engineerInfo) => {
   <div class="card" style="width: 18rem;">
       <div class="card-body">
         <h5 class="card-title">Name: ${name}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">title: ${name}</h6>
+        <h6 class="card-subtitle mb-2 text-muted">title: ${title}</h6>
       </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">ID: ${id}</li>
         <li class="list-group-item">Email: ${email}</li>
-        <li class="list-group-item">GitHub: ${github}</li>
+        <li class="list-group-item">GitHub: <a href="https://github.com/${github}">${github}</a></li>
       </ul>        
     </div>
   `;
 };
 
 const generateIntern = (internInfo) => {
-  const { name, id, email, school } = internInfo;
+  const { name, title, id, email, school } = internInfo;
 
   if (!internInfo) {
     return '';
@@ -55,7 +53,7 @@ const generateIntern = (internInfo) => {
   <div class="card" style="width: 18rem;">
       <div class="card-body">
         <h5 class="card-title">Name: ${name}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">title: ${name}</h6>
+        <h6 class="card-subtitle mb-2 text-muted">title: ${title}</h6>
       </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">ID: ${id}</li>
