@@ -274,7 +274,6 @@ function createIntern() {
 promptManager();
 
 function createPage() {
-  console.log('employeeData', employeeData);
   const pageHTML = generatePage(employeeData);
   writeFile(pageHTML)
     .then((writeFileResponse) => {

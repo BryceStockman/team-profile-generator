@@ -1,3 +1,5 @@
+const employeeHTML = [];
+
 const generateManager = (managerInfo) => {
   const { name, title, id, email, officeNumber } = managerInfo;
 
@@ -65,11 +67,23 @@ const generateIntern = (internInfo) => {
 };
 
 module.exports = (employeeData) => {
-  // Why does destructuring not work?
-  // const [{ Manager, Engineer, Intern }] = employeeData;
-  const manager = employeeData[0];
-  const engineer = employeeData[1];
-  const intern = employeeData[2];
+  for (i = 0; i < employeeData.length; i++) {
+    if (i === 0) {
+      const manager = employeeData[i];
+      const managerData = generateManager(manager);
+      employeeHTML.push(managerData);
+    } else if (employeeData[i].title === 'engineer') {
+      const engineer = employeeData[i];
+      const engineerData = generateEngineer(engineer);
+      employeeHTML.push(engineerData);
+    } else if (employeeData[i].title === 'intern') {
+      const intern = employeeData[i];
+      const internData = generateIntern(intern);
+      employeeHTML.push(internData);
+    }
+  }
+
+  // console.log('employeeHTML', employeeHTML);
 
   return `
   <!DOCTYPE html> 
@@ -83,9 +97,7 @@ module.exports = (employeeData) => {
   </head>
 
   <body>
-    ${generateManager(manager)}
-    ${generateEngineer(engineer)}
-    ${generateIntern(intern)}
+    ${employeeHTML}
   </body>
   </html>
   `;
