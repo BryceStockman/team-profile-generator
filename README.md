@@ -10,6 +10,7 @@ This application is designed to allow the user to add team members to an HTML pa
 
 ## Video Walkthrough
 
+I would mute the video, haven't figured out how to turn the audio of from a recording yet.
 https://watch.screencastify.com/v/7Huoo7yVZTk8deHhB0K9
 
 ## Screenshots
