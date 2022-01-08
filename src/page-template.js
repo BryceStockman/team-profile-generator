@@ -8,16 +8,20 @@ const generateManager = (managerInfo) => {
   }
 
   return `
-  <div class="card" style="width: 18rem;">
-      <div class="card-body">
-        <h5 class="card-title">Name: ${name}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">title: ${title}</h6>
+  <div class="col-md-4 my-3">
+    <div class="card" style="width: 18rem;">
+        <div class="card-header bg-primary text-white">
+          <h5 class="card-title">Name: ${name}</h5>
+          <h6 class="card-subtitle mb-2"><i class="fas fa-mug-hot"></i> ${title}</h6>
+        </div>
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">ID: ${id}</li>
+            <li class="list-group-item">Email: ${email}</li>
+            <li class="list-group-item">Office Number: ${officeNumber}</li>
+          </ul>
+        </div>    
       </div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">ID: ${id}</li>
-        <li class="list-group-item">Email: ${email}</li>
-        <li class="list-group-item">Office Number: ${officeNumber}</li>
-      </ul>        
     </div>
   `;
 };
@@ -30,17 +34,21 @@ const generateEngineer = (engineerInfo) => {
   }
 
   return `
-  <div class="card" style="width: 18rem;">
-      <div class="card-body">
+  <div class="col-md-4 my-3">
+    <div class="card col-md-4" style="width: 18rem;">
+      <div class="card-header bg-primary text-white">
         <h5 class="card-title">Name: ${name}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">title: ${title}</h6>
+        <h6 class="card-subtitle mb-2"><i class="fas fa-glasses"></i> ${title}</h6>
       </div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">ID: ${id}</li>
-        <li class="list-group-item">Email: ${email}</li>
-        <li class="list-group-item">GitHub: <a href="https://github.com/${github}">${github}</a></li>
-      </ul>        
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">ID: ${id}</li>
+          <li class="list-group-item">Email: ${email}</li>
+          <li class="list-group-item">GitHub: <a href="https://github.com/${github}">${github}</a></li>
+        </ul>
+      </div>        
     </div>
+  </div>
   `;
 };
 
@@ -52,16 +60,20 @@ const generateIntern = (internInfo) => {
   }
 
   return `
-  <div class="card" style="width: 18rem;">
-      <div class="card-body">
-        <h5 class="card-title">Name: ${name}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">title: ${title}</h6>
+  <div class="col-md-4 my-3">
+    <div class="card col-md-4" style="width: 18rem;">
+        <div class="card-header bg-primary text-white">
+          <h5 class="card-title">Name: ${name}</h5>
+          <h6 class="card-subtitle mb-2"><i class="fas fa-user-graduate"></i> ${title}</h6>
+        </div>
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">ID: ${id}</li>
+            <li class="list-group-item">Email: ${email}</li>
+            <li class="list-group-item">School: ${school}</li>
+          </ul>
+        </div>      
       </div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">ID: ${id}</li>
-        <li class="list-group-item">Email: ${email}</li>
-        <li class="list-group-item">School: ${school}</li>
-      </ul>        
     </div>
   `;
 };
@@ -83,8 +95,6 @@ module.exports = (employeeData) => {
     }
   }
 
-  // console.log('employeeHTML', employeeHTML);
-
   return `
   <!DOCTYPE html> 
   <html lang="en"> 
@@ -93,11 +103,21 @@ module.exports = (employeeData) => {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/3b2adb7b87.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
     <title>Portfolio Demo</title>
   </head>
 
   <body>
-    ${employeeHTML}
+  <section>
+    <h1 class="text-center bg-danger text-white mb-3 p-5">My Team</h1>
+  </section>
+
+    <section id="employee-info" class="container d-flex mt-3">
+      <div class="row justify-content-center">
+        ${employeeHTML.join('')}
+      </div>
+    </section>
   </body>
   </html>
   `;

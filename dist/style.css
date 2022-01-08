@@ -1,0 +1,18 @@
+#employee-info {
+  height: 80vh;
+  align-items: center;
+}
+
+.card {
+  box-shadow: 5px 5px 5px #4f4f4f;
+}
+
+.card h5 {
+  padding-bottom: 5px;
+  font-size: 1.5rem;
+}
+
+.card h6 {
+  padding-bottom: 5px;
+  font-size: 1rem;
+}
